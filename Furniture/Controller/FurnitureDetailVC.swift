@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FurnitureDetailVC: UIViewController, UIImagePickerController,UINavigationControllerDelegate {
+class FurnitureDetailVC: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     var furniture: Furniture?
     
@@ -47,13 +47,23 @@ class FurnitureDetailVC: UIViewController, UIImagePickerController,UINavigationC
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { action in print("User chose Camera")
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { action in imagePickerControllers.sourceType = .camera
+            self.present(imagePickerControllers, animated: true, completion: nil)
             })
         alertController.addAction(cameraAction)
+        }
         
-        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: {action in print("User chose Photo Library")
+        
+        
+         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: {action in imagePickerControllers.sourceType = .photoLibrary
+            self.present(imagePickerControllers, animated: true, completion: nil)
         })
         alertController.addAction(photoLibraryAction)
+        }
+            
+    
         present(alertController, animated: true, completion: nil)
         
         
