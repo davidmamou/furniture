@@ -67,7 +67,9 @@ class FurnitureTablcVCTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
+        
+        return rooms[section].name
+       /* switch section {
         case 0:
             return rooms[0].name
         case 1:
@@ -76,7 +78,7 @@ class FurnitureTablcVCTableViewController: UITableViewController {
             return rooms[2].name
         default:
             return "Oops!"
-        }
+        }**/
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
