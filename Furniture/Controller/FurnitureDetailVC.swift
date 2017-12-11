@@ -22,7 +22,9 @@ class FurnitureDetailVC: UIViewController, UIImagePickerControllerDelegate,UINav
         updateView()
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    
     func updateView() {
         guard let furniture = furniture else {return}
         if let imageData = furniture.imageData,
@@ -67,9 +69,20 @@ class FurnitureDetailVC: UIViewController, UIImagePickerControllerDelegate,UINav
         present(alertController, animated: true, completion: nil)
         
         
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        
-        
+        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            furniture?.imageData = UIImagePNGRepresentation(selectedImage)
+           
+        }
+        dismiss(animated: true, completion: nil)
+        updateView()
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func actionButtonTapped(_ sender: Any) {
